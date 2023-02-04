@@ -1,0 +1,6 @@
+node_modules/
+pfp/users.json
+PatoBot3.zip
+config.json
+package-lock.json
+dist/
