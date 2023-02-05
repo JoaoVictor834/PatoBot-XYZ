@@ -20,7 +20,7 @@ export = class extends Event['mEvent'] {
         const db = this.ebot.db
 
 // Verifys
-        if (username === this.ebot.client.bot.username) return this.ebot.client.cmd.send(`> ${message}`)
+        if (username === this.ebot.client.bot.username) this.ebot.client.cmd.send(`> ${message}`)
 
         function banFrases(m: string, ebot: { filter: { clean: (arg0: any) => any } }): string {
         if(filterlist.find((banfrase: string | RegExp) => {
