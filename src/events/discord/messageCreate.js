@@ -12,7 +12,7 @@ module.exports = class extends Event.dEvent {
     run = async (message) => {
       
         
-       // Disable for now if(message.author.id === this.client.user.id) return
+        if(message.author.id === this.client.user.id) return
         if(message.channel.id === CMDBOT) {
             return message.client.bot.chat(`${message}`)
         }
