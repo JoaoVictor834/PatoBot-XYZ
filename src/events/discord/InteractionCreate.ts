@@ -1,13 +1,14 @@
-const Event = require('../../structures/Event')
-const { InteractionType } = require('discord.js')
+import { ApplicationCommand, InteractionType } from 'discord.js'
+import Event from '../../structures/Event'
+import Client from '../../../index'
 
-module.exports = class extends Event.dEvent {
-    constructor(client) {
+module.exports = class extends Event['dEvent'] {
+    constructor(client: typeof Client) {
         super(client, {
             name: 'interactionCreate'
         })
     }
-    run = async (interaction) => {
+    run = async (interaction: { type: InteractionType; commandName: ApplicationCommand['name']; client: { bot: typeof Client.ebot ; ebot: typeof Client } }) => {
 
         if (interaction.type === InteractionType.ApplicationCommand) {
             const cmd = this.client.commands.find(c => c.name === interaction.commandName)

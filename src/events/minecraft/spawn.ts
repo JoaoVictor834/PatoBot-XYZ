@@ -1,10 +1,11 @@
 import { Bot } from 'mineflayer'
 import Event from '../../structures/Event'
 const wait = require('node:timers/promises').setTimeout
-const { LOGIN } = require('../../../config.json')
+import Client from '../../../index'
 
-module.exports = class extends Event['mEvent'] {
-    constructor(bot: Bot, client: any, ebot: any) {
+
+export = class extends Event['mEvent'] {
+    constructor(bot: Bot, client: typeof Client, ebot: any) {
         super(bot, client, ebot, {
             name: 'spawn'
         })
@@ -14,7 +15,6 @@ module.exports = class extends Event['mEvent'] {
 
         await wait(1000)
         this.bot.chat('/queue anarkcraft')
-        this.bot.chat('/login ' + LOGIN)
 
         await this.bot.tabComplete('/').then(complete => {
             this.ebot.choices = []

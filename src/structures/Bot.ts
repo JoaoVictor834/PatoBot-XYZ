@@ -3,7 +3,7 @@ import { readdirSync } from 'fs'
 import { join } from 'path'
 import mineflayer from 'mineflayer'
 const tpsPlugin = require('mineflayer-tps')(mineflayer)
-const { ChatPatterns } = require('../../config')
+import { ChatPatterns } from '../../config.json'
 const filterlist = require('../../filter.json').words
 import simplDb from 'simpl.db'
 
@@ -21,13 +21,6 @@ const filterconfig = {
     list: filterlist,
     cleanWith: ['#', '@', '*', '!', '?', '$', '&'],
     useRegex: true,
-}
-
-
-interface Pattern {
-    name: string
-    regex: RegExp
-    options?: any
 }
 
 // Export the bot class
@@ -107,8 +100,6 @@ export = class {
 
         bot.once('spawn', () => {
             bot.once('spawn', async () => {
-               
-                
                 bot.once('spawn', async () => {
                     
                     function antiafk(isActive: boolean): void {
@@ -159,10 +150,10 @@ export = class {
 
 
     // Update the chat pattern of bot if exist
-    updateChatPatern() {
+    updateChatPatern(): void {
 
         // Get all chat patterns
-        ChatPatterns.forEach((Pattern: Pattern) => {
+        ChatPatterns.forEach((Pattern) => {
 
             // Verifiers
             if (!Pattern || !Pattern.name || !Pattern.regex) return

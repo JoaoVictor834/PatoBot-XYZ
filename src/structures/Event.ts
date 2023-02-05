@@ -1,7 +1,6 @@
 // Exports the base of every event class
-
-import { Client } from "discord.js"
 import { Bot } from "mineflayer"
+import Client from "../../index"
 
 interface options {
     name: string
@@ -11,9 +10,9 @@ export = {
     dEvent: class {
 
         name: string
-        client: Client
+        client: typeof Client
 
-    constructor(client: Client, options: options) {
+    constructor(client: typeof Client, options: options) {
         this.client = client
         this.name = options.name
     }
@@ -22,11 +21,11 @@ export = {
 mEvent: class {
 
     bot: Bot
-    client: Client
-    ebot: any
+    client: typeof Client
+    ebot: typeof Client.ebot
     name: string
     
-    constructor(bot: Bot, client: Client, ebot: any, options: options) {
+    constructor(bot: Bot, client: typeof Client, ebot: typeof Client.ebot, options: options) {
         this.bot = bot
         this.client = client
         this.ebot = ebot

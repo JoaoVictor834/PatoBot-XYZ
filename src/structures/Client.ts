@@ -1,11 +1,9 @@
-import { Client } from 'discord.js'
+import { Channel, Client } from 'discord.js'
 import { readdirSync } from 'fs'
 import { join } from 'path'
 import Bot from './Bot'
 import { createBot } from 'mineflayer'
-const { NAME, IP, VERSION, CHATBOT, CMDBOT, GUILD_ID, LOGIN } = require('../../config.json')
-
-
+import { NAME, IP, VERSION, CHATBOT, CMDBOT, GUILD_ID, LOGIN } from '../../config.json'
 
 //Export a class of client
 export = class extends Client {
@@ -26,7 +24,7 @@ export = class extends Client {
     }
 
     // Create the bot
-    botCreate() {
+    botCreate(): void {
         const options = {
             AutoAuth: LOGIN,
             username: NAME,
@@ -36,12 +34,12 @@ export = class extends Client {
 
         const CreatedBot = new Bot(createBot(options), this)
         this.ebot = CreatedBot
-        return this.bot = CreatedBot.bot
+        this.bot = CreatedBot.bot
 
     }
 
     // Update/set chat
-    updateChat(type: string) {
+    updateChat(type: string): Channel | undefined {
         if (type === 'chatbot') {
             return this.channels.cache.get(CHATBOT)
         } else if (type === 'chatcmd') {

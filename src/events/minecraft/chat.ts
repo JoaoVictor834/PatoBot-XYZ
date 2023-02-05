@@ -1,11 +1,12 @@
 import { Bot } from "mineflayer"
 import Event from '../../structures/Event'
 import Antispam from '../../antispam'
-const { PREFIX } = require('../../../config.json')
+import { PREFIX } from '../../../config.json'
 const filterlist = require('../../../filter.json').frases
+import Client from '../../../index'
 
 export = class extends Event['mEvent'] {
-    constructor(bot: Bot, client: any, ebot: any) {
+    constructor(bot: Bot, client: typeof Client, ebot: any) {
         super(bot, client, ebot, {
             name: 'chat'
         })

@@ -1,11 +1,11 @@
 import Event from '../../structures/Event'
 import Bot from '../../structures/Bot'
 import mineflayer from 'mineflayer'
-const { NAME, VERSION, IP } = require('../../../config')
-
+import { NAME, VERSION, IP } from '../../../config.json'
+import Client from '../../../index'
 
 export = class extends Event['mEvent'] {
-    constructor(bot: mineflayer.Bot, client: any, _: any) {
+    constructor(bot: mineflayer.Bot, client: typeof Client, _: any) {
         super(bot, client, _, {
             name: 'end'
         })

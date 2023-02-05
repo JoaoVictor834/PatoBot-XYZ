@@ -182,7 +182,7 @@ export = {
 
     },
 
-    death: async function (reason: string, username: any, ebot: { quantityD: Array<any>; getValue: (arg0: string) => any; dcmsgsD: any; vald: number; filter: { clean: (arg0: any) => any } }, client: { chat: { messages: { fetch: (arg0: any) => Promise<any> }; send: (arg0: { embeds: EmbedBuilder[] }) => Promise<any> } }): Promise<void> {
+    death: async function (reason: string, username: any, ebot: { quantityD: Array<any>; getValue: (arg0: string) => number; dcmsgsD: Array<any>; vald: number; filter: { clean: (arg0: any) => any } }, client: { chat: { messages: { fetch: (arg0: any) => Promise<any> }; send: (arg0: { embeds: EmbedBuilder[] }) => Promise<any> } }): Promise<void> {
         const usrreason = `${username} ${reason}`
 
         let vezes = ebot.quantityD
@@ -234,7 +234,7 @@ export = {
                     "dval": dval
                 })
 
-                if (deathmsgs.lenght >= 10) deathmsgs = []
+                if (deathmsgs.length >= 10) deathmsgs = []
 
 
 
@@ -274,7 +274,7 @@ export = {
 
                 })
 
-                if (deathmsgs.lenght >= 10) deathmsgs = []
+                if (deathmsgs.length >= 10) deathmsgs = []
 
 
 
