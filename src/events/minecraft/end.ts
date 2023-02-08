@@ -5,7 +5,7 @@ import { NAME, VERSION, IP } from '../../../config.json'
 import Client from '../../../index'
 
 export = class extends Event['mEvent'] {
-    constructor(bot: mineflayer.Bot, client: typeof Client, _: any) {
+    constructor(bot: mineflayer.Bot, client: typeof Client, _: typeof Client['ebot']) {
         super(bot, client, _, {
             name: 'end'
         })
@@ -14,7 +14,7 @@ export = class extends Event['mEvent'] {
     run = async (reason: string) => {
         console.log('Reconectando ' + reason)
 
-         function relog(client: any) {
+        async function relog(client: any): Promise<void> {
 
 console.log('Reconnecting...')
 client.chat.send('Reconectando <a:load:1044704168159498340>')
@@ -27,10 +27,11 @@ client.chat.send('Reconectando <a:load:1044704168159498340>')
 
           client.bot = CreatedBot
         }
+        
 
 
         setTimeout(() => {
-            relog(this.client)
+            relog(this.client).catch(err => console.log(err))
         }, 31000)
 }
 }

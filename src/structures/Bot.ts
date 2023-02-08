@@ -6,6 +6,7 @@ const tpsPlugin = require('mineflayer-tps')(mineflayer)
 import { ChatPatterns } from '../../config.json'
 const filterlist = require('../../filter.json').words
 import simplDb from 'simpl.db'
+import server from "../server"
 
 // Create database
 const database = new simplDb.Database({
@@ -101,7 +102,7 @@ export = class {
         bot.once('spawn', () => {
             bot.once('spawn', async () => {
                 bot.once('spawn', async () => {
-                    
+                    server(client, bot)
                     function antiafk(isActive: boolean): void {
 
                         if (!isActive) {

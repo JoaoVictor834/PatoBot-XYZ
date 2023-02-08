@@ -6,7 +6,7 @@ const filterlist = require('../../../filter.json').frases
 import Client from '../../../index'
 
 export = class extends Event['mEvent'] {
-    constructor(bot: Bot, client: typeof Client, ebot: any) {
+    constructor(bot: Bot, client: typeof Client, ebot: typeof Client['ebot']) {
         super(bot, client, ebot, {
             name: 'chat'
         })
@@ -40,16 +40,17 @@ export = class extends Event['mEvent'] {
                     const args = message.slice(PREFIX.length).trim().split(/ +/g);
                     const command = args.shift().toLowerCase();
 
-        const cmd = message.startsWith(PREFIX) ?
 
-            this.ebot.commands.find((c: { name: any }) => c.name === command) ||
+        const cmd = message.trim().startsWith(PREFIX) ?
 
-            this.ebot.commands.find((c: { aliases: any[] | undefined }) => {
+            this.ebot.commands.find((c: { name: string }) => c.name === command) ||
+
+            this.ebot.commands.find((c: { aliases: string[] | undefined }) => {
                 if (c.aliases === undefined) return false
-                return c.aliases.find((a: any) => a === command)
+                return c.aliases.find((a: string) => a === command)
             }) :
 
-            this.ebot.commands.find((c: { aliases: any[] | undefined }) => {
+            this.ebot.commands.find((c: { aliases: string[] | undefined }) => {
                 if (c.aliases === undefined) return false
                 return c.aliases.find((a: string) => {
                     if (!a.startsWith('r')) return false
@@ -62,11 +63,13 @@ export = class extends Event['mEvent'] {
                 return new RegExp(c.name.slice(1), 'i').test(message)
             })
 
-        if (cmd) return cmd.run(username, message, args)
+            
+        if (cmd) await cmd.run(username, message, args)
 
 
         
         // Intialize chat function
+        
         Antispam.chat(usrmsg, db, username, this.ebot.client, this.ebot, message, banFrases)
 
 

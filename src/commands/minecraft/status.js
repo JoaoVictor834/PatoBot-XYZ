@@ -4,6 +4,7 @@ module.exports = class extends Command.mCommand {
     constructor(bot, client, _) {
         super(bot, client, _, {
             name: 'status',
+            description: 'Status do bot',
             aliases: ['info']
         })
     }

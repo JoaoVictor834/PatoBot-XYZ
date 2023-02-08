@@ -5,6 +5,7 @@ module.exports = class extends Command.mCommand {
     constructor(bot, client, ebot) {
         super(bot, client, ebot, {
             name: 'skin',
+            description: 'Troque sua skin no patobot!',
         })
     }
     

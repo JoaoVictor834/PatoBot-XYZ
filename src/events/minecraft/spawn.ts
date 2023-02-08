@@ -5,7 +5,7 @@ import Client from '../../../index'
 
 
 export = class extends Event['mEvent'] {
-    constructor(bot: Bot, client: typeof Client, ebot: any) {
+    constructor(bot: Bot, client: typeof Client, ebot: typeof Client['ebot']) {
         super(bot, client, ebot, {
             name: 'spawn'
         })

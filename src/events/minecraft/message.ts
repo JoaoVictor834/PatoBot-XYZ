@@ -5,7 +5,7 @@ import { LOGIN } from '../../../config.json'
 
 
 export = class extends Event['mEvent'] {
-    constructor(bot: Bot, client: typeof Client, ebot: any) {
+    constructor(bot: Bot, client: typeof Client, ebot: typeof Client['ebot']) {
         super(bot, client, ebot, {
             name: 'message'
         })
@@ -20,22 +20,21 @@ export = class extends Event['mEvent'] {
         if(msg === '') return
         if(msg === ' ') return
       console.log('[CHAT] ' + msg)
-
-        let regAuth = /Use the command (\/login)|Use the command (\/register)/
+      
+        let regAuth = /(\/login)|(\/register)|(\/registrar)|(\/logar)/
 
         if(regAuth.test(msg)) {
           let result = msg.match(regAuth)
           if(!result) return
-        
-          this.bot.chat(`${result[1]} ${LOGIN}`)
 
+         result[1].startsWith('regist') ? this.bot.chat(`${result[1]} ${LOGIN}`) : this.bot.chat(`${result[1]} ${LOGIN} ${LOGIN}`)
         }
       
         if(message.hasOwnProperty('extra')) {
 
           if (message.extra[0].color === "red") {
             if(this.client.cmd) {
-         return this.client.cmd.send(`> ${msg}`)
+       //  return this.client.cmd.send(`> ${msg}`)
             }
           }
         }
